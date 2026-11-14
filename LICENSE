@@ -7,7 +7,7 @@ This is not an open-source licence. Zerre ("the Software") is free to use; its
 source code is not published.
 
 1. Use. You may download, install and use the Software free of charge, for any
-   lawful purpose, personal or professional, on Macs that you own or control.
+   lawful purpose, personal or professional, on devices that you own or control.
    You may make the copies that installing, using and backing it up needs.
 
 2. Sharing. To let someone else have Zerre, point them to https://zerre.app. You
@@ -22,11 +22,15 @@ source code is not published.
 4. Ownership. The Software, its name and its logo belong to the developer. You
    get a licence to use it, not ownership of it. Please do not use the name
    "Zerre" or its logo in a way that suggests that your own product comes from,
-   or is endorsed by, the developer. Apple, Mac, macOS and other names belong to
-   their owners.
+   or is endorsed by, the developer. Apple, Mac, macOS, iPhone, iPad, Windows,
+   Linux, Android and other names belong to their owners.
 
-5. Other components. The Software contains no third-party code. It uses features
-   of macOS, which Apple provides under Apple's own terms.
+5. Other components. The Mac, iPhone and iPad editions of the Software contain
+   no third-party code; they use features of Apple's systems, which Apple provides
+   under its own terms. The Windows and Linux editions contain open-source
+   components, which stay under their own licences; they are listed with those
+   licences in the file THIRD-PARTY-NOTICES that comes with them, and nothing in
+   this licence changes them.
 
 6. No warranty. To the extent the law allows, the Software is provided "as is",
    without warranty of any kind, express or implied, including any warranty of
