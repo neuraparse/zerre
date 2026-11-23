@@ -1,67 +1,34 @@
 # Zerre
 
-**Everything, one dot away.** Zerre is a free, calm workspace for your day: tasks, a focus timer, notes, file tools and more, in one place. It works offline, needs no account and keeps what you make on your own device. It began in the menu bar of the Mac and is now coming to every device you use.
+Zerre is a desktop assistant for files, notes, tasks and focus. This repository distributes the app. Installation instructions are available in [English](https://zerre.app/download/) and [Türkçe](https://zerre.app/tr/download/).
 
-This repository only holds the **downloads**. The source code of the app is not published. Everything else about Zerre, with pictures, is on **[zerre.app](https://zerre.app)**.
+| Device | Download | Choose a package |
+| --- | --- | --- |
+| Mac | [Mac App Store](https://apps.apple.com/app/id6832377467) · [Direct download 1.6.0](https://github.com/neuraparse/zerre/releases/tag/v1.6.0) | Apple silicon on macOS 27 or later, or the universal preview for Intel and Apple silicon on macOS 15 or later |
+| Windows | [Desktop preview 0.2.0](https://github.com/neuraparse/zerre/releases/tag/desktop-v0.2.0) | x64 for Intel and AMD or ARM64 for Windows on Arm. Offline installers include Microsoft Edge WebView2 |
+| Linux | [Desktop preview 0.2.0](https://github.com/neuraparse/zerre/releases/tag/desktop-v0.2.0) | Deb, RPM and AppImage for x86-64 and ARM64. Arch Linux and Omarchy also have an x86-64 pacman package |
+| Browser | [Open Zerre](https://zerre.app/app/) | The browser edition works offline after the first visit |
 
-## Download
+## Verify a download
 
-| Device | State | Where |
-|---|---|---|
-| **Mac** | Zerre 1.5.1, the full app | [Release v1.5.1](../../releases/tag/v1.5.1) |
-| **Linux** | Zerre 0.1.0, a preview: `.deb`, `.rpm`, AppImage and an Arch package | [Release desktop-v0.1.0](../../releases/tag/desktop-v0.1.0) |
-| **Windows, Android, iPhone and iPad** | Coming. Nothing to download yet | [zerre.app/download](https://zerre.app/download/) |
+Download the package, its release’s **SHA256SUMS** and **SHA256SUMS.sig**, and the [release signing key file](https://raw.githubusercontent.com/neuraparse/zerre/main/release-signers). The signing key is listed on [the publisher’s GitHub account](https://github.com/neuraparse.keys) and has the ED25519 fingerprint `SHA256:/KRyWtuAz5IzM5B/EDhlbCQ97hz2VDdoluzuG8iFqXo`.
 
-### Mac
+Verify the signature with OpenSSH in a shell that supports input redirection. On Windows, Command Prompt also supports this command.
 
-Open the [Mac release](../../releases/tag/v1.5.1) and pick the file for your Mac:
-
-* **arm64**: Apple silicon, macOS 27 or later. This is the tested one.
-* **universal**: Apple silicon and Intel, macOS 15 or later. A preview: the same code compiled for older systems, not yet tested there. Live Notes needs macOS 26 or later and says so when it cannot run.
-
-Open the disk image and drag Zerre onto the Applications folder. If macOS says it cannot verify Zerre, open System Settings, then Privacy and Security, and choose **Open Anyway** once. [zerre.app/download](https://zerre.app/download/) explains each step.
-
-### Linux
-
-Open the [Linux release](../../releases/tag/desktop-v0.1.0), a preview, and pick the file for your system:
-
-* **Ubuntu, Debian and relatives**: `sudo apt install ./Zerre_0.1.0_amd64.deb` (or the `arm64` file on an ARM machine).
-* **Fedora and relatives**: `sudo dnf install ./Zerre_0.1.0_amd64.rpm`.
-* **Arch Linux and Omarchy**: `sudo pacman -U zerre-bin-0.1.0-1-x86_64.pkg.tar.zst`.
-* **Any other recent distribution**: the AppImage. Make it executable and run it; if it says FUSE is missing, run it with `--appimage-extract-and-run`.
-
-It was tried in test machines of Ubuntu, Debian, Fedora and Arch, not yet on a real desktop, and the files are not signed. [zerre.app/support](https://zerre.app/support/) has the details for every desktop.
-
-## Check your download
-
-Every release lists its checksums. In a terminal, in the folder you downloaded to, on a Mac:
-
-```bash
-shasum -a 256 -c Zerre-1.5.1-arm64.dmg.sha256
+```sh
+ssh-keygen -Y verify -f release-signers -I neuraparse -n file -s SHA256SUMS.sig < SHA256SUMS
 ```
 
-and on Linux:
+Then compare the SHA-256 of the file you downloaded to the matching line in the verified list. Use `shasum -a 256 FILENAME` on macOS, `sha256sum FILENAME` on Linux, or `Get-FileHash FILENAME -Algorithm SHA256` in PowerShell.
 
-```bash
-sha256sum -c SHA256SUMS --ignore-missing
-```
+Download the [Fedora signing key](https://github.com/neuraparse/zerre/releases/download/desktop-v0.2.0/Zerre-RPM-GPG-KEY.asc), verify its SHA-256 against the signed list, and import it with `sudo rpmkeys --import ./Zerre-RPM-GPG-KEY.asc` before installing the RPM. Its OpenPGP fingerprint is `25AB DF01 416F 34A0 441E A097 00FC E97E 6AB9 AC58`.
 
-It should answer `OK` for the file you downloaded. The same checksums are listed on [zerre.app/download](https://zerre.app/download/).
-
-## Licence
-
-Zerre is free to use on your own devices under the Zerre Free Use Licence in the file `LICENSE`. It is not open source software, and its design, words and icons are protected: see [zerre.app/terms](https://zerre.app/terms/).
+The direct Mac applications carry ad hoc signatures and have no Apple notarization. Windows preview installers have no Authenticode publisher certificate. The Mac App Store handles installation and updates for the store edition.
 
 ## Türkçe
 
-Zerre, gününü sakin tek bir yerde toplayan ücretsiz bir çalışma alanıdır: görevler, odak sayacı, notlar, dosya araçları ve daha fazlası. Çevrimdışı çalışır, hesap istemez ve ürettiklerini kendi cihazında tutar. Mac'in menü çubuğunda başladı, şimdi kullandığın her cihaza geliyor.
-
-Bu depo yalnızca **indirme dosyalarını** barındırır, uygulamanın kaynak kodu yayınlanmaz. Gerisi, resimleriyle birlikte, **[zerre.app/tr](https://zerre.app/tr/)** adresinde.
-
-* **Mac**: [Zerre 1.5.1](../../releases/tag/v1.5.1). Mac'ine uyan dosyayı seç (Apple silicon ve macOS 27 için arm64, macOS 15 ve sonrası ile Intel için evrensel olan önizlemedir), diski aç ve Zerre'yi Uygulamalar klasörüne sürükle. macOS doğrulayamadığını söylerse Sistem Ayarları, Gizlilik ve Güvenlik bölümünde bir kez **Yine de Aç** de.
-* **Linux**: [Zerre 0.1.0, bir önizleme](../../releases/tag/desktop-v0.1.0). `.deb`, `.rpm`, AppImage ve Arch paketi var. Ubuntu, Debian, Fedora ve Arch test makinelerinde denendi, henüz gerçek bir masaüstünde denenmedi ve dosyalar imzalı değil.
-* **Windows, Android, iPhone ve iPad**: yakında. Şimdilik indirilecek bir şey yok.
+Mac’te ilk seçenek [Mac App Store](https://apps.apple.com/app/id6832377467). Doğrudan indirmek için [Mac 1.6.0 sürümünü](https://github.com/neuraparse/zerre/releases/tag/v1.6.0) veya [Windows ve Linux 0.2.0 önizlemesini](https://github.com/neuraparse/zerre/releases/tag/desktop-v0.2.0) aç. Her iki sürümde de yayıncı anahtarıyla imzalanmış SHA-256 listesi bulunur. Cihazına uygun paketi ve kurulum adımlarını [Türkçe indirme sayfasında](https://zerre.app/tr/download/) bulabilirsin.
 
 ## Contact
 
-[eker600@gmail.com](mailto:eker600@gmail.com) · [zerre.app/support](https://zerre.app/support/) · [bayrameker.com](https://bayrameker.com)
+[zerre.app](https://zerre.app) · [Support](https://zerre.app/support/) · [bayrameker.com](https://bayrameker.com)
